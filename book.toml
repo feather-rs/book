@@ -1,0 +1,6 @@
+[book]
+authors = ["caelunshun"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Feather"
