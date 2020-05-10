@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Starting a server - Feather</title>
+        <title>Entity and Component - Feather</title>
         
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -11,21 +11,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -35,7 +35,7 @@
     <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "light";
         </script>
 
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">1.</strong> Starting a server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/config.html"><strong aria-hidden="true">1.1.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Starting a server</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.1.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html" class="active"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -116,7 +116,7 @@
                     <h1 class="menu-title">Feather</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         
@@ -147,28 +147,20 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#getting-started" id="getting-started">Getting started</a></h1>
-<p>The latest version of feather can be found and downloaded from our <a href="https://github.com/feather-rs/feather/releases">github release page</a>. Feather is platform dependent, therefor you must download the version corresponding to your operating system and your processors architecture.</p>
-<p>The zip file contains a single executable that is compiled to the given target that when executed will generate a few files notable <code>world/</code> and <code>feather.toml</code>, so it is recommended to execute the server in a separate folder.</p>
-<h2><a class="header" href="#windows" id="windows">Windows</a></h2>
-<p>After downloading and unzipping the executable <code>feather.exe</code> you can start it by simply double clicking on it.</p>
-<h2><a class="header" href="#mac-os-x" id="mac-os-x">Mac OS-X</a></h2>
-<p>After downloading and unzipping you can execute feather from the terminal</p>
-<pre><code>./feather
-</code></pre>
-<h2><a class="header" href="#linux" id="linux">Linux</a></h2>
-<p>After downloading and unzipping you can execute feather from the terminal</p>
-<pre><code>./feather
-</code></pre>
+                        <h1><a class="header" href="#entity-and-component" id="entity-and-component">Entity and Component</a></h1>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="../../plugin/concepts/intro.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="getting-started/config.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../plugin/concepts/resource.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -180,9 +172,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a rel="prev" href="../../plugin/concepts/intro.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a rel="next" href="getting-started/config.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../plugin/concepts/resource.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -205,14 +201,14 @@
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
