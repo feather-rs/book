@@ -148,6 +148,16 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#world" id="world">World</a></h1>
+<p>When writing plugins for feather you will rarely have to create your own world, since feather provides two worlds that one of which are available asynchronous. But for the purpose of demonstrating ECS will be crating our own world, which is no different from a provided one.</p>
+<p>We can create a world in Fecs by simply calling <code>World::new</code>.</p>
+<pre><pre class="playpen"><code class="language-rust">
+<span class="boring">#![allow(unused_variables)]
+</span><span class="boring">fn main() {
+</span>use fecs::World;
+
+let world = World::new();
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
