@@ -1,6 +1,7 @@
 # Summary
 
-- [Starting a server](./getting-started/index.md)
+- [Getting started](./getting-started/index.md)
+    - [Starting a server](./getting-started/starting-a-server.md)
     - [Configuring a server](./getting-started/config.md)
 
 - [Developing a plugin](./plugin/index.md)

@@ -4,6 +4,7 @@ language = "en"
 multilingual = false
 src = "src"
 title = "Feather"
+git-repository-url = "https://github.com/feather/book"
 
 [output.html]
 #theme = "src/theme"
