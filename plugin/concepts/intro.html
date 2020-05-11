@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html" class="active"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html" class="active"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/scheduler.html"><strong aria-hidden="true">2.1.5.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/events.html"><strong aria-hidden="true">2.1.6.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/advanced/intro.html"><strong aria-hidden="true">2.2.</strong> Advanced</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/advanced/fecs.html"><strong aria-hidden="true">2.2.1.</strong> Feather ECS</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.3.</strong> Command handling</a></li></ol></li><li class="chapter-item expanded "><a href="../../contributing/intro.html"><strong aria-hidden="true">3.</strong> Contributing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,23 +148,24 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#concepts" id="concepts">Concepts</a></h1>
-<p>Feather is quite a bit different from regular Minecraft server software written in Java. Feather is written using the <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> architecture, which greatly improves the utilization of the CPU, most notable being improved cache hit ratio compared to <a href="https://en.wikipedia.org/wiki/Object-oriented_programming"><em>Object Oriented Programming</em></a>. </p>
+<p>Feather is quite a bit different from regular Minecraft server software written in Java. Feather is written using the <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> architecture, which greatly improves the utilization of the CPU, most notable being improved cache hit ratio, compared to <a href="https://en.wikipedia.org/wiki/Object-oriented_programming"><em>Object Oriented Programming</em></a>.</p>
 <p>The following definitions is used throughout the book to avoid confusion</p>
 <ol>
-<li><em>Entity</em> is used to associate data in ECS.</li>
-<li><em>Component</em> is some data associated with a single <em>Entity</em> in ECS.</li>
-<li><em>World</em> is a container of queryable data associated with <em>Entity's</em> in ECS.</li>
-<li><em>Dimension</em>: Is a world in Minecraft.</li>
+<li><em><a href="TODO">Entity</a></em> is a unique identifier used to associate data in ECS.</li>
+<li><em><a href="TODO">Component</a></em> is a container of data associated with a single <em>entity</em> in ECS.</li>
+<li><em><a href="TODO">World</a></em> is a container of queryable data associated with <em>entity's</em> in ECS.</li>
+<li><em><a href="TODO">Spawn</a></em> is the action of inserting an entity and its components into a world in ECS.</li>
+<li><em><a href="TODO">Despawn</a></em> is the action of removing an entity and its components from a world in ECS.</li>
+<li><em><a href="TODO">Dimension</a></em> is a world in Minecraft.</li>
 </ol>
-<p>Feather uses <a href="https://github.com/feather-rs/fecs">Fecs</a> which is our own custom ECS built on top of <a href="https://docs.rs/legion/0.2.1/legion/">Legion</a>. We chose Legion as the base of our ECS due to its incredible query performance compared to its alternatives like <a href="https://docs.rs/specs/0.16.1/specs/">Specs</a>. The components that makes up an entity is called its archetype, Legion stores all its entities in chunks based on the archetype. This means that adding or removing components from an entity is an <code>O(n)</code> operation and should therefor be avoided. </p>
-<p>Feather is structured with a number of systems running in series, these system may perform their calculations in parallel by utilizing <a href="https://docs.rs/rayon/1.3.0/rayon/"><em>Rayon</em></a>. These systems emit events that effects their outcome, for instance the <code>block_place_system</code> system emits both <code>BlockChangeEvent</code> and <code>InteractItemEvent</code>. The listeners attached to these events may poll in arbitrary data from the world and this is the major reason Systems are run in series and not parallel.</p>
-<p>In the following chapters we will cover <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> and how it is utilized within feather and how you should interact with them. We will also cover the event bus and how we merge tasks into the main Game Loop through the scheduler. </p>
-<h1><a class="header" href="#chapters" id="chapters">Chapters</a></h1>
+<h2><a class="header" href="#chapters" id="chapters">Chapters</a></h2>
 <ol>
 <li><a href="./entity-component.html">Entity Component</a></li>
 <li><a href="./world.html">World</a></li>
 <li><a href="./resource.html">Resource</a></li>
 <li><a href="./system.html">System</a></li>
+<li><a href="./scheduler.html">Scheduler</a></li>
+<li><a href="./events.html">Events</a></li>
 </ol>
 <h3><a class="header" href="#additional-resources" id="additional-resources">Additional resources</a></h3>
 <ol>

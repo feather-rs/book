@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html" class="active"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html" class="active"><strong aria-hidden="true">2.1.4.</strong> System</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/scheduler.html"><strong aria-hidden="true">2.1.5.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/events.html"><strong aria-hidden="true">2.1.6.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/advanced/intro.html"><strong aria-hidden="true">2.2.</strong> Advanced</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/advanced/fecs.html"><strong aria-hidden="true">2.2.1.</strong> Feather ECS</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.3.</strong> Command handling</a></li></ol></li><li class="chapter-item expanded "><a href="../../contributing/intro.html"><strong aria-hidden="true">3.</strong> Contributing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -148,6 +148,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#system" id="system">System</a></h1>
+<p>Feather is structured with a number of systems running in series, these system may perform their calculations in parallel by utilizing <a href="https://docs.rs/rayon/1.3.0/rayon/"><em>Rayon</em></a>. These systems emit events that effects their outcome, for instance the <code>block_place_system</code> system emits both <code>BlockChangeEvent</code> and <code>InteractItemEvent</code>. The listeners attached to these events may poll in arbitrary data from the world and this is the major reason Systems are run in series and not parallel.</p>
 
                     </main>
 
@@ -160,7 +161,7 @@
                         
 
                         
-                            <a rel="next" href="../../plugin/lieutenant/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../../plugin/concepts/scheduler.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -178,7 +179,7 @@
                 
 
                 
-                    <a rel="next" href="../../plugin/lieutenant/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../../plugin/concepts/scheduler.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

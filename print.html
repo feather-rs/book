@@ -83,7 +83,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/concepts/entity-component.html"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li><li class="chapter-item expanded "><a href="plugin/concepts/scheduler.html"><strong aria-hidden="true">2.1.5.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="plugin/concepts/events.html"><strong aria-hidden="true">2.1.6.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/advanced/intro.html"><strong aria-hidden="true">2.2.</strong> Advanced</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="plugin/advanced/fecs.html"><strong aria-hidden="true">2.2.1.</strong> Feather ECS</a></li></ol></li><li class="chapter-item expanded "><a href="plugin/lieutenant/index.html"><strong aria-hidden="true">2.3.</strong> Command handling</a></li></ol></li><li class="chapter-item expanded "><a href="contributing/intro.html"><strong aria-hidden="true">3.</strong> Contributing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -158,11 +158,11 @@
 <p>After downloading and unzipping the executable <code>feather.exe</code> you can start it by simply double clicking it.</p>
 <h2><a class="header" href="#mac-os-x" id="mac-os-x">Mac OS-X</a></h2>
 <p>After downloading and unzipping you can execute feather from the terminal</p>
-<pre><code>./feather
+<pre><code class="language-noplaypen">./feather
 </code></pre>
 <h2><a class="header" href="#linux" id="linux">Linux</a></h2>
 <p>After downloading and unzipping you can execute feather from the terminal</p>
-<pre><code>./feather
+<pre><code class="language-noplaypen">./feather
 </code></pre>
 <h1><a class="header" href="#configuring" id="configuring">Configuring</a></h1>
 <p>Feather config files are written in the <a href="https://github.com/toml-lang/toml/blob/master/README.md"><strong>TOML</strong></a> format. </p>
@@ -233,48 +233,35 @@ proxy_mode = &quot;None&quot;
 <h1><a class="header" href="#developing-a-plugin" id="developing-a-plugin">Developing a plugin</a></h1>
 <p>Plugins written for Feather can achieve incredible flexibility through Feather's data-oriented API. Our plugin system has been written from the start to support any functionality imaginable, to the extent all gameplay features could be implemented as plugins if needed. However writing a plugin for feather is very different from writing a plugin for any other Minecraft Server software.</p>
 <h1><a class="header" href="#concepts" id="concepts">Concepts</a></h1>
-<p>Feather is quite a bit different from regular Minecraft server software written in Java. Feather is written using the <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> architecture, which greatly improves the utilization of the CPU, most notable being improved cache hit ratio compared to <a href="https://en.wikipedia.org/wiki/Object-oriented_programming"><em>Object Oriented Programming</em></a>. </p>
+<p>Feather is quite a bit different from regular Minecraft server software written in Java. Feather is written using the <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> architecture, which greatly improves the utilization of the CPU, most notable being improved cache hit ratio, compared to <a href="https://en.wikipedia.org/wiki/Object-oriented_programming"><em>Object Oriented Programming</em></a>.</p>
 <p>The following definitions is used throughout the book to avoid confusion</p>
 <ol>
-<li><em>Entity</em> is used to associate data in ECS.</li>
-<li><em>Component</em> is some data associated with a single <em>Entity</em> in ECS.</li>
-<li><em>World</em> is a container of queryable data associated with <em>Entity's</em> in ECS.</li>
-<li><em>Dimension</em>: Is a world in Minecraft.</li>
+<li><em><a href="plugin/concepts/TODO">Entity</a></em> is a unique identifier used to associate data in ECS.</li>
+<li><em><a href="plugin/concepts/TODO">Component</a></em> is a container of data associated with a single <em>entity</em> in ECS.</li>
+<li><em><a href="plugin/concepts/TODO">World</a></em> is a container of queryable data associated with <em>entity's</em> in ECS.</li>
+<li><em><a href="plugin/concepts/TODO">Spawn</a></em> is the action of inserting an entity and its components into a world in ECS.</li>
+<li><em><a href="plugin/concepts/TODO">Despawn</a></em> is the action of removing an entity and its components from a world in ECS.</li>
+<li><em><a href="plugin/concepts/TODO">Dimension</a></em> is a world in Minecraft.</li>
 </ol>
-<p>Feather uses <a href="https://github.com/feather-rs/fecs">Fecs</a> which is our own custom ECS built on top of <a href="https://docs.rs/legion/0.2.1/legion/">Legion</a>. We chose Legion as the base of our ECS due to its incredible query performance compared to its alternatives like <a href="https://docs.rs/specs/0.16.1/specs/">Specs</a>. The components that makes up an entity is called its archetype, Legion stores all its entities in chunks based on the archetype. This means that adding or removing components from an entity is an <code>O(n)</code> operation and should therefor be avoided. </p>
-<p>Feather is structured with a number of systems running in series, these system may perform their calculations in parallel by utilizing <a href="https://docs.rs/rayon/1.3.0/rayon/"><em>Rayon</em></a>. These systems emit events that effects their outcome, for instance the <code>block_place_system</code> system emits both <code>BlockChangeEvent</code> and <code>InteractItemEvent</code>. The listeners attached to these events may poll in arbitrary data from the world and this is the major reason Systems are run in series and not parallel.</p>
-<p>In the following chapters we will cover <a href="https://en.wikipedia.org/wiki/Entity_component_system"><em>Entity Component System</em></a> and how it is utilized within feather and how you should interact with them. We will also cover the event bus and how we merge tasks into the main Game Loop through the scheduler. </p>
-<h1><a class="header" href="#chapters" id="chapters">Chapters</a></h1>
+<h2><a class="header" href="#chapters" id="chapters">Chapters</a></h2>
 <ol>
 <li><a href="plugin/concepts/./entity-component.html">Entity Component</a></li>
 <li><a href="plugin/concepts/./world.html">World</a></li>
 <li><a href="plugin/concepts/./resource.html">Resource</a></li>
 <li><a href="plugin/concepts/./system.html">System</a></li>
+<li><a href="plugin/concepts/./scheduler.html">Scheduler</a></li>
+<li><a href="plugin/concepts/./events.html">Events</a></li>
 </ol>
 <h3><a class="header" href="#additional-resources" id="additional-resources">Additional resources</a></h3>
 <ol>
 <li>Theres a great <a href="https://kyren.github.io/2018/09/14/rustconf-talk.html">talk</a> on ECS from <a href="https://2018.rustconf.com/">RustConf 2018</a>.</li>
 <li>Theres a great comparison between <a href="https://docs.rs/specs/0.16.1/specs/">Specs</a> and <a href="https://docs.rs/legion/0.2.1/legion/">Legion</a> <a href="https://csherratt.github.io/blog/posts/specs-and-legion/">here</a> by Cora Sherratt who worked on specs.</li>
 </ol>
-<h1><a class="header" href="#entity-and-component" id="entity-and-component">Entity and Component</a></h1>
-<h2><a class="header" href="#what-are-entity-and-component" id="what-are-entity-and-component">What are <code>Entity</code> and <code>Component</code></a></h2>
-<p>An <code>Entity</code> is some unique identifier in the world. The <code>Entity</code> has a number of <code>Components</code>, these components are nothing more than simple data type. For example a Player entity has Health, Position, and etc. associated, it is also common for entities to have some tag associated that describe the type. In the case of a Player it would be some <code>Player</code> struct mark the entity as a Player.</p>
-<h2><a class="header" href="#example" id="example">Example</a></h2>
-<p>Let try to define <em>Player</em> and <em>Zombie</em> as entities in ECS with <code>Health</code> and <code>Position</code>.</p>
-<table><thead><tr><th>Player</th><th>Zombie</th><th>Health</th><th>Position</th></tr></thead><tbody>
-<tr><td>Player</td><td></td><td>20.0</td><td>0.0, 0.0, 0.0</td></tr>
-<tr><td></td><td>Zombie</td><td>15.0</td><td>0.0, 0.0, 0.0</td></tr>
-</tbody></table>
-<p>Both <em>Player</em> and <em>Zombie</em> share the components <code>Health</code> and <code>Position</code> but not the components <code>Player</code> and <code>Zombie</code> that is used to mark the type of the entity.</p>
-<p>We can declare the above components as the following</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
-</span><span class="boring">fn main() {
-</span>// Component used to mark an entity as a player
+<h1><a class="header" href="#what-are-entity-and-component" id="what-are-entity-and-component">What are <code>Entity</code> and <code>Component</code></a></h1>
+<p>An <code>Entity</code> is a unique identifier that usually has a number of <code>Components</code> associated, these components are nothing more than simple data containers. For example a Player entity could have the attributes <code>Health</code> and <code>Position</code> associated. It is also common for entities to have a marker component associated, the marker is used to identify and describe the type of an entity. In the case of a Player it would be a <code>struct Player;</code> that is used to mark the entity as a Player.</p>
+<p>Modeling a <em>Player</em> in ECS starts by defining some components that holds attributes for the player.</p>
+<pre><code class="language-rust noplaypen">// Component used to mark an entity as a player
 struct Player;
-
-// Component used to mark an entity as a Zombie
-struct Zombie;
 
 // Component storing health
 struct Health(f64);
@@ -285,13 +272,18 @@ struct Position {
     y: f64,
     z: f64,
 }
-<span class="boring">}
-</span></code></pre></pre>
-<p>Now that we have declared the a few components we can create two entities with the given components and insert it into a world. In a later <a href="plugin/concepts/./world.html">chapter on world</a> we will cover insertion in depth and what it actually means.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
-</span><span class="boring">fn main() {
-</span>use fecs::EntityBuilder;
+</code></pre>
+<p>Here <code>Health</code> and <code>Postion</code> attributes could be shared across multiple types of entities, but the player marker would only exist for a Player entity. We could define a separate <code>Zombie</code> marker for a Zombie and have it share <code>Health</code> and <code>Postion</code> components with the Player.</p>
+<pre><code class="language-rust noplaypen">// Component used to mark an entity as a zombie
+struct Zombie;
+</code></pre>
+<p>In ECS each entity and its associated components are stored in a world, we can imagine the world being a large matrix where each column is a component, each row a unique entity, and each cell component data associated with the entity.</p>
+<table><thead><tr><th>Player</th><th>Zombie</th><th>Health</th><th>Position</th></tr></thead><tbody>
+<tr><td>Player</td><td></td><td>20.0</td><td>0.0, 0.0, 0.0</td></tr>
+<tr><td></td><td>Zombie</td><td>15.0</td><td>0.0, 0.0, 0.0</td></tr>
+</tbody></table>
+<p>Now that we have defined two marker components <code>Player</code> and <code>Zombie</code>, and the associated attribute components <code>Health</code> and <code>Postion</code>, we can create Player and Zombie as entities and spawn them into the ECS world.</p>
+<pre><code class="language-rust noplaypen">use fecs::EntityBuilder;
 
 EntityBuilder::new()
     .with(Player)
@@ -314,9 +306,7 @@ EntityBuilder::new()
     })
     .build()
     .spawn_in(&amp;mut world);
-<span class="boring">}
-</span></code></pre></pre>
-<p>By calling <code>BuiltEntity::spawn</code> we create two new chunks, in the world, where the entities of the archetypes, <code>{Player, Health, Position}</code> and <code>{Zombie, Health, Position}</code> are stored. We can add additional components to an entity by calling <code>World::add</code>, however this will change the archetype of the entity and we would have to move the entire entity to a new chunk. This is an expensive operation and involves copying all components to a new chunk in heap, it takes <code>O(n)</code> and therefor should be avoided if possible, this is the same cost as create an entire new entity. In most cases where you find your self adding and removing some component from an entity a mutable component can be used instead, it has greatly improved performance due to the entity not changing its archetype, it is an <code>O(1)</code> operation and is very cheap compared to <code>World::add</code>.</p>
+</code></pre>
 <h1><a class="header" href="#resource" id="resource">Resource</a></h1>
 <h1><a class="header" href="#world" id="world">World</a></h1>
 <p>When writing plugins for feather you will rarely have to create your own world, since feather provides two worlds that one of which are available asynchronous. But for the purpose of demonstrating ECS will be crating our own world, which is no different from a provided one.</p>
@@ -329,8 +319,18 @@ EntityBuilder::new()
 let world = World::new();
 <span class="boring">}
 </span></code></pre></pre>
+<p>The set of components that makes up an entity is called archetype, Legion stores all its entities in chunks based on the archetype. This means that adding or removing components from an entity is an <code>O(n)</code> operation and should therefor be avoided. </p>
+<p>By calling <code>BuiltEntity::spawn</code> we create two new chunks, in the world, where the entities of the archetypes, <code>{Player, Health, Position}</code> and <code>{Zombie, Health, Position}</code> are stored. We can add additional components to an entity by calling <code>World::add</code>, however this will change the archetype of the entity and we would have to move the entire entity to a new chunk. This is an expensive operation and involves copying all components to a new chunk in heap, it takes <code>O(n)</code> and therefor should be avoided if possible, this is the same cost as create an entire new entity. In most cases where you find your self adding and removing some component from an entity a mutable component can be used instead, it has greatly improved performance due to the entity not changing its archetype, it is an <code>O(1)</code> operation and is very cheap compared to <code>World::add</code>.</p>
 <h1><a class="header" href="#system" id="system">System</a></h1>
+<p>Feather is structured with a number of systems running in series, these system may perform their calculations in parallel by utilizing <a href="https://docs.rs/rayon/1.3.0/rayon/"><em>Rayon</em></a>. These systems emit events that effects their outcome, for instance the <code>block_place_system</code> system emits both <code>BlockChangeEvent</code> and <code>InteractItemEvent</code>. The listeners attached to these events may poll in arbitrary data from the world and this is the major reason Systems are run in series and not parallel.</p>
+<h1><a class="header" href="#scheduler" id="scheduler">Scheduler</a></h1>
+<h1><a class="header" href="#events" id="events">Events</a></h1>
+<h1><a class="header" href="#advanced" id="advanced">Advanced</a></h1>
+<p>These chapters are meant for those who want to get into the gritty details.</p>
+<h1><a class="header" href="#feather-ecs" id="feather-ecs">Feather ECS</a></h1>
+<p>This chapter is mostly about the technical details of Fecs and by extension Legion.</p>
 <h1><a class="header" href="#command-handling" id="command-handling">Command handling</a></h1>
+<h1><a class="header" href="#contributing" id="contributing">Contributing</a></h1>
 
                     </main>
 

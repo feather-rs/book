@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html" class="active"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.2.</strong> Command handling</a></li></ol></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../../getting-started/index.html"><strong aria-hidden="true">1.</strong> Getting started</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../getting-started/starting-a-server.html"><strong aria-hidden="true">1.1.</strong> Starting a server</a></li><li class="chapter-item expanded "><a href="../../getting-started/config.html"><strong aria-hidden="true">1.2.</strong> Configuring a server</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/index.html"><strong aria-hidden="true">2.</strong> Developing a plugin</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/intro.html"><strong aria-hidden="true">2.1.</strong> Concepts</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/concepts/entity-component.html" class="active"><strong aria-hidden="true">2.1.1.</strong> Entity and Component</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/resource.html"><strong aria-hidden="true">2.1.2.</strong> Resource</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/world.html"><strong aria-hidden="true">2.1.3.</strong> World</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/system.html"><strong aria-hidden="true">2.1.4.</strong> System</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/scheduler.html"><strong aria-hidden="true">2.1.5.</strong> Scheduler</a></li><li class="chapter-item expanded "><a href="../../plugin/concepts/events.html"><strong aria-hidden="true">2.1.6.</strong> Events</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/advanced/intro.html"><strong aria-hidden="true">2.2.</strong> Advanced</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../../plugin/advanced/fecs.html"><strong aria-hidden="true">2.2.1.</strong> Feather ECS</a></li></ol></li><li class="chapter-item expanded "><a href="../../plugin/lieutenant/index.html"><strong aria-hidden="true">2.3.</strong> Command handling</a></li></ol></li><li class="chapter-item expanded "><a href="../../contributing/intro.html"><strong aria-hidden="true">3.</strong> Contributing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -147,25 +147,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1><a class="header" href="#entity-and-component" id="entity-and-component">Entity and Component</a></h1>
-<h2><a class="header" href="#what-are-entity-and-component" id="what-are-entity-and-component">What are <code>Entity</code> and <code>Component</code></a></h2>
-<p>An <code>Entity</code> is some unique identifier in the world. The <code>Entity</code> has a number of <code>Components</code>, these components are nothing more than simple data type. For example a Player entity has Health, Position, and etc. associated, it is also common for entities to have some tag associated that describe the type. In the case of a Player it would be some <code>Player</code> struct mark the entity as a Player.</p>
-<h2><a class="header" href="#example" id="example">Example</a></h2>
-<p>Let try to define <em>Player</em> and <em>Zombie</em> as entities in ECS with <code>Health</code> and <code>Position</code>.</p>
-<table><thead><tr><th>Player</th><th>Zombie</th><th>Health</th><th>Position</th></tr></thead><tbody>
-<tr><td>Player</td><td></td><td>20.0</td><td>0.0, 0.0, 0.0</td></tr>
-<tr><td></td><td>Zombie</td><td>15.0</td><td>0.0, 0.0, 0.0</td></tr>
-</tbody></table>
-<p>Both <em>Player</em> and <em>Zombie</em> share the components <code>Health</code> and <code>Position</code> but not the components <code>Player</code> and <code>Zombie</code> that is used to mark the type of the entity.</p>
-<p>We can declare the above components as the following</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
-</span><span class="boring">fn main() {
-</span>// Component used to mark an entity as a player
+                        <h1><a class="header" href="#what-are-entity-and-component" id="what-are-entity-and-component">What are <code>Entity</code> and <code>Component</code></a></h1>
+<p>An <code>Entity</code> is a unique identifier that usually has a number of <code>Components</code> associated, these components are nothing more than simple data containers. For example a Player entity could have the attributes <code>Health</code> and <code>Position</code> associated. It is also common for entities to have a marker component associated, the marker is used to identify and describe the type of an entity. In the case of a Player it would be a <code>struct Player;</code> that is used to mark the entity as a Player.</p>
+<p>Modeling a <em>Player</em> in ECS starts by defining some components that holds attributes for the player.</p>
+<pre><code class="language-rust noplaypen">// Component used to mark an entity as a player
 struct Player;
-
-// Component used to mark an entity as a Zombie
-struct Zombie;
 
 // Component storing health
 struct Health(f64);
@@ -176,13 +162,18 @@ struct Position {
     y: f64,
     z: f64,
 }
-<span class="boring">}
-</span></code></pre></pre>
-<p>Now that we have declared the a few components we can create two entities with the given components and insert it into a world. In a later <a href="./world.html">chapter on world</a> we will cover insertion in depth and what it actually means.</p>
-<pre><pre class="playpen"><code class="language-rust">
-<span class="boring">#![allow(unused_variables)]
-</span><span class="boring">fn main() {
-</span>use fecs::EntityBuilder;
+</code></pre>
+<p>Here <code>Health</code> and <code>Postion</code> attributes could be shared across multiple types of entities, but the player marker would only exist for a Player entity. We could define a separate <code>Zombie</code> marker for a Zombie and have it share <code>Health</code> and <code>Postion</code> components with the Player.</p>
+<pre><code class="language-rust noplaypen">// Component used to mark an entity as a zombie
+struct Zombie;
+</code></pre>
+<p>In ECS each entity and its associated components are stored in a world, we can imagine the world being a large matrix where each column is a component, each row a unique entity, and each cell component data associated with the entity.</p>
+<table><thead><tr><th>Player</th><th>Zombie</th><th>Health</th><th>Position</th></tr></thead><tbody>
+<tr><td>Player</td><td></td><td>20.0</td><td>0.0, 0.0, 0.0</td></tr>
+<tr><td></td><td>Zombie</td><td>15.0</td><td>0.0, 0.0, 0.0</td></tr>
+</tbody></table>
+<p>Now that we have defined two marker components <code>Player</code> and <code>Zombie</code>, and the associated attribute components <code>Health</code> and <code>Postion</code>, we can create Player and Zombie as entities and spawn them into the ECS world.</p>
+<pre><code class="language-rust noplaypen">use fecs::EntityBuilder;
 
 EntityBuilder::new()
     .with(Player)
@@ -205,9 +196,7 @@ EntityBuilder::new()
     })
     .build()
     .spawn_in(&amp;mut world);
-<span class="boring">}
-</span></code></pre></pre>
-<p>By calling <code>BuiltEntity::spawn</code> we create two new chunks, in the world, where the entities of the archetypes, <code>{Player, Health, Position}</code> and <code>{Zombie, Health, Position}</code> are stored. We can add additional components to an entity by calling <code>World::add</code>, however this will change the archetype of the entity and we would have to move the entire entity to a new chunk. This is an expensive operation and involves copying all components to a new chunk in heap, it takes <code>O(n)</code> and therefor should be avoided if possible, this is the same cost as create an entire new entity. In most cases where you find your self adding and removing some component from an entity a mutable component can be used instead, it has greatly improved performance due to the entity not changing its archetype, it is an <code>O(1)</code> operation and is very cheap compared to <code>World::add</code>.</p>
+</code></pre>
 
                     </main>
 
