@@ -1,25 +1,10 @@
-# Entity and Component
-## What are `Entity` and `Component`
-An `Entity` is some unique identifier in the world. The `Entity` has a number of `Components`, these components are nothing more than simple data type. For example a Player entity has Health, Position, and etc. associated, it is also common for entities to have some tag associated that describe the type. In the case of a Player it would be some `Player` struct mark the entity as a Player.
+# What are `Entity` and `Component`
+An `Entity` is a unique identifier that usually has a number of `Components` associated, these components are nothing more than simple data containers. For example a Player entity could have the attributes `Health` and `Position` associated. It is also common for entities to have a marker component associated, the marker is used to identify and describe the type of an entity. In the case of a Player it would be a `struct Player;` that is used to mark the entity as a Player.
 
-
-## Example
-Let try to define *Player* and *Zombie* as entities in ECS with `Health` and `Position`.
-
-| Player | Zombie | Health | Position      |
-|--------|--------|--------|---------------|
-| Player |        | 20.0   | 0.0, 0.0, 0.0 |
-|        | Zombie | 15.0   | 0.0, 0.0, 0.0 |
-
-Both *Player* and *Zombie* share the components `Health` and `Position` but not the components `Player` and `Zombie` that is used to mark the type of the entity.
-
-We can declare the above components as the following
-```rust
+Modeling a *Player* in ECS starts by defining some components that holds attributes for the player.
+```rust,noplaypen
 // Component used to mark an entity as a player
 struct Player;
-
-// Component used to mark an entity as a Zombie
-struct Zombie;
 
 // Component storing health
 struct Health(f64);
@@ -31,9 +16,21 @@ struct Position {
     z: f64,
 }
 ```
+Here `Health` and `Postion` attributes could be shared across multiple types of entities, but the player marker would only exist for a Player entity. We could define a separate `Zombie` marker for a Zombie and have it share `Health` and `Postion` components with the Player.
+```rust,noplaypen
+// Component used to mark an entity as a zombie
+struct Zombie;
+```
+In ECS each entity and its associated components are stored in a world, we can imagine the world being a large matrix where each column is a component, each row a unique entity, and each cell component data associated with the entity.
 
-Now that we have declared the a few components we can create two entities with the given components and insert it into a world. In a later [chapter on world](./world.md) we will cover insertion in depth and what it actually means.
-```rust
+| Player | Zombie | Health | Position      |
+|--------|--------|--------|---------------|
+| Player |        | 20.0   | 0.0, 0.0, 0.0 |
+|        | Zombie | 15.0   | 0.0, 0.0, 0.0 |
+
+
+Now that we have defined two marker components `Player` and `Zombie`, and the associated attribute components `Health` and `Postion`, we can create Player and Zombie as entities and spawn them into the ECS world.
+```rust,noplaypen
 use fecs::EntityBuilder;
 
 EntityBuilder::new()
@@ -58,5 +55,3 @@ EntityBuilder::new()
     .build()
     .spawn_in(&mut world);
 ```
-
-By calling `BuiltEntity::spawn` we create two new chunks, in the world, where the entities of the archetypes, `{Player, Health, Position}` and `{Zombie, Health, Position}` are stored. We can add additional components to an entity by calling `World::add`, however this will change the archetype of the entity and we would have to move the entire entity to a new chunk. This is an expensive operation and involves copying all components to a new chunk in heap, it takes `O(n)` and therefor should be avoided if possible, this is the same cost as create an entire new entity. In most cases where you find your self adding and removing some component from an entity a mutable component can be used instead, it has greatly improved performance due to the entity not changing its archetype, it is an `O(1)` operation and is very cheap compared to `World::add`.

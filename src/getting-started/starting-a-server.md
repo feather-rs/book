@@ -8,12 +8,12 @@ After downloading and unzipping the executable `feather.exe` you can start it by
 
 ## Mac OS-X
 After downloading and unzipping you can execute feather from the terminal
-```
+```noplaypen
 ./feather
 ```
 
 ## Linux
 After downloading and unzipping you can execute feather from the terminal
-```
+```noplaypen
 ./feather
 ```
